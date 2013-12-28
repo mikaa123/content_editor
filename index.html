@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link rel="stylesheet" type="text/css" href="content_editor.css"/>
+	<title>ContentEditor example</title>
+	<script src="http://code.jquery.com/jquery-latest.min.js"></script>
+	<script src="content_editor.js"></script>
+</head>
+<body>
+
+<h1>ContentEditor playground !</h1>
+
+<div class="content-editor" contenteditable="true" data-placeholder="Type your text here..."></div>
+
+<script type="application/javascript">
+	var contentEditor = new ContentEditor($('.content-editor')[0]);
+</script>
+</body>
+</html>
