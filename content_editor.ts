@@ -4,33 +4,35 @@
 
 /// <reference path="libs/jquery.d.ts" />
 
-/**
- * This holds the different states a ContentEditor can be in.
- */
 enum EditorStates {
 	PLACEHOLDER,
 	EDITOR
 }
 
 class ContentEditor {
-	private state: EditorStates;
+	private state: EditorStates = EditorStates.EDITOR;
 
-	// The ContentEditor's DOM element.
 	private $el: JQuery;
 
-	constructor(public el: HTMLElement) {
-		var placeholderText: string;
+	private placeHolderText: string;
 
+	constructor(public el: HTMLElement) {
 		this.$el = $(el);
 
-		placeholderText = this.$el.data('placeholder');
+		if (!this.$el.length) throw 'No DOM element found.';
 
-		if (placeholderText && placeholderText.length) {
-			this.state = EditorStates.PLACEHOLDER;
-			this.$el.addClass('is-placeholder');
-			$('<p/>', {
-				text: placeholderText
-			}).appendTo(this.$el);
+		this.placeHolderText = this.$el.data('placeholder');
+
+		if (this.placeHolderText && this.placeHolderText) {
+			this.showPlaceholder();
 		}
+	}
+
+	private showPlaceholder () {
+		this.state = EditorStates.PLACEHOLDER;
+		this.$el.addClass('is-placeholder');
+		$('<p/>', {
+			text: this.placeHolderText
+		}).appendTo(this.$el);
 	}
 }

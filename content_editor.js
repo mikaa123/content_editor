@@ -2,9 +2,6 @@
 * Created by michaelsokol on 28/12/2013.
 */
 /// <reference path="libs/jquery.d.ts" />
-/**
-* This holds the different states a ContentEditor can be in.
-*/
 var EditorStates;
 (function (EditorStates) {
     EditorStates[EditorStates["PLACEHOLDER"] = 0] = "PLACEHOLDER";
@@ -14,20 +11,25 @@ var EditorStates;
 var ContentEditor = (function () {
     function ContentEditor(el) {
         this.el = el;
-        var placeholderText;
-
+        this.state = 1 /* EDITOR */;
         this.$el = $(el);
 
-        placeholderText = this.$el.data('placeholder');
+        if (!this.$el.length)
+            throw 'No DOM element found.';
 
-        if (placeholderText && placeholderText.length) {
-            this.state = 0 /* PLACEHOLDER */;
-            this.$el.addClass('is-placeholder');
-            $('<p/>', {
-                text: placeholderText
-            }).appendTo(this.$el);
+        this.placeHolderText = this.$el.data('placeholder');
+
+        if (this.placeHolderText && this.placeHolderText) {
+            this.showPlaceholder();
         }
     }
+    ContentEditor.prototype.showPlaceholder = function () {
+        this.state = 0 /* PLACEHOLDER */;
+        this.$el.addClass('is-placeholder');
+        $('<p/>', {
+            text: this.placeHolderText
+        }).appendTo(this.$el);
+    };
     return ContentEditor;
 })();
 //# sourceMappingURL=content_editor.js.map
