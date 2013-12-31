@@ -2,10 +2,12 @@
   <library name="Generated files" type="javaScript">
     <properties>
       <sourceFilesUrls>
+        <item url="file://$PROJECT_DIR$/editor_states.js" />
         <item url="file://$PROJECT_DIR$/content_editor.js" />
       </sourceFilesUrls>
     </properties>
     <CLASSES>
+      <root url="file://$PROJECT_DIR$/editor_states.js" />
       <root url="file://$PROJECT_DIR$/content_editor.js" />
     </CLASSES>
     <SOURCES />

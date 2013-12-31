@@ -3,14 +3,10 @@
  */
 
 /// <reference path="libs/jquery.d.ts" />
-
-enum EditorStates {
-	PLACEHOLDER,
-	EDITOR
-}
+/// <reference path="editor_states.ts" />
 
 class ContentEditor {
-	private state: EditorStates = EditorStates.EDITOR;
+	private state: EditorState;
 
 	private $el: JQuery;
 
@@ -26,6 +22,21 @@ class ContentEditor {
 		if (this.placeHolderText && this.placeHolderText) {
 			this.showPlaceholder();
 		}
+
+		// Create bindings.
+		// What do i wanna bind?
+		// - mousedown
+		// - blur -> To show the placeholder
+		// - keydown
+		// - keyup
+
+		// Create states.
+
+		// Depending in the state, different things will be done.
+		this.$el.on('mousedown blur keydown keyup', e => {
+			var stateHandler = this.state[e.type];
+			stateHandler && stateHandler(this);
+		});
 	}
 
 	private showPlaceholder () {

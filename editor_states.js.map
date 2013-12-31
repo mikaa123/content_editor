@@ -1,0 +1,1 @@
+{"version":3,"file":"editor_states.js","sourceRoot":"","sources":["editor_states.ts"],"names":["PlaceHolderState","PlaceHolderState.constructor","EditingState","EditingState.constructor"],"mappings":"AAAA;;EAEG;;AAKH;IAAAA;;AACCA,IAADA,wBAACA;AAADA,CAACA,IAAA;;AAED;IAAAE;;AACCA,IAADA,oBAACA;AAADA,CAACA,IAAA"}
