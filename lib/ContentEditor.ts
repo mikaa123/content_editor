@@ -75,6 +75,6 @@ class ContentEditor {
 	}
 
 	public isKeyForbidden(stateName: string, e: JQueryEventObject) {
-		return this.forbiddenKeyFnForState[stateName](e);
+		return this.forbiddenKeyFnForState[stateName] && this.forbiddenKeyFnForState[stateName](e);
 	}
 }
