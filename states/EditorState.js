@@ -3,7 +3,9 @@
 */
 /// <reference path="../ContentEditor.ts" />
 var EditorState = (function () {
-    function EditorState() {
+    function EditorState(stateName) {
+        this.stateName = 'placeholder';
+        this.stateClass = 'is-' + this.stateName;
     }
     EditorState.prototype.initState = function (editor) {
         editor.$el.addClass(this.stateClass);

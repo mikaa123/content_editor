@@ -13,8 +13,7 @@ var __extends = this.__extends || function (d, b) {
 var EditingState = (function (_super) {
     __extends(EditingState, _super);
     function EditingState() {
-        _super.call(this);
-        this.stateClass = 'is-editing';
+        _super.call(this, 'editing');
     }
     EditingState.prototype.initState = function (editor) {
         _super.prototype.initState.call(this, editor);

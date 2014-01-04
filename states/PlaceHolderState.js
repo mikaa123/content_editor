@@ -13,8 +13,7 @@ var __extends = this.__extends || function (d, b) {
 var PlaceHolderState = (function (_super) {
     __extends(PlaceHolderState, _super);
     function PlaceHolderState() {
-        _super.call(this);
-        this.stateClass = 'is-placeholder';
+        _super.call(this, 'placeholder');
     }
     PlaceHolderState.prototype.initState = function (editor) {
         var $editor = editor.$el, placeHolderText = $editor.data('placeholder');
@@ -43,6 +42,10 @@ var PlaceHolderState = (function (_super) {
 
     PlaceHolderState.prototype.keydown = function (editor, e) {
         var $editor = editor.$el;
+
+        if (editor.isKeyForbidden(this.stateName, e))
+            return;
+
         $editor.find(':first-child').text('');
         $editor.removeClass('is-placeholder');
 

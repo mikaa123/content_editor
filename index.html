@@ -16,6 +16,9 @@
 
 <script type="application/javascript">
 	var contentEditor = new ContentEditor($('.content-editor')[0]);
+	contentEditor.addForbiddenKeyFn('placeholder', function (e) {
+		return e.ctrlKey;
+	});
 </script>
 </body>
 </html>

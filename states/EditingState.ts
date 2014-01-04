@@ -10,8 +10,7 @@ class EditingState extends EditorState implements Interactable{
 	public static _instance: EditingState = new EditingState();
 
 	constructor() {
-		super();
-		this.stateClass = 'is-editing';
+		super('editing');
 	}
 
 	public initState(editor: ContentEditor) {

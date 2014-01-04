@@ -13,6 +13,13 @@ class ContentEditor {
 
 	private placeHolderText: string;
 
+	/**
+	 * A hash mapping state names to forbidden key checking functions.
+	 */
+	private forbiddenKeyFnForState: {
+		[stateName: string]: (e: JQueryEventObject) => boolean
+	} = {};
+
 	constructor(public el: HTMLElement) {
 		this.$el = $(el);
 
@@ -34,11 +41,19 @@ class ContentEditor {
 		state.initState(this);
 	}
 
+	public addForbiddenKeyFn(stateName: string, fn: (e: JQueryEventObject) => boolean) {
+		this.forbiddenKeyFnForState[stateName] = fn;
+	}
+
 	private initListeners() {
 		// Depending in the state, different things will be done.
 		this.$el.on('mousedown blur keydown keyup', e => {
 			var stateHandler = this.state[e.type];
-			stateHandler && stateHandler(this, e);
+			stateHandler && stateHandler.call(this.state, this, e);
 		});
+	}
+
+	public isKeyForbidden(stateName: string, e: JQueryEventObject) {
+		return this.forbiddenKeyFnForState[stateName](e);
 	}
 }
