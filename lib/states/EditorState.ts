@@ -10,7 +10,7 @@ class EditorState {
 	stateName: string;
 
 	constructor(stateName: string) {
-		this.stateName = 'placeholder';
+		this.stateName = stateName;
 		this.stateClass = 'is-' + this.stateName;
 	}
 
