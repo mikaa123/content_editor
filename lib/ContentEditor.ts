@@ -15,9 +15,7 @@
  */
 class ContentEditor {
 	private state: EditorState;
-
 	public $el: JQuery;
-
 	private placeHolderText: string;
 
 	/**
@@ -31,9 +29,7 @@ class ContentEditor {
 		this.$el = $(el);
 
 		if (!this.$el.length) throw 'No DOM element found.';
-
 		this.placeHolderText = this.$el.data('placeholder');
-
 		if (this.placeHolderText && this.placeHolderText.length) {
 			this.changeState(PlaceHolderState._instance);
 		} else {
