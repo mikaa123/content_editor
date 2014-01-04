@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="14506747-45b9-43e6-9792-590af115d6dd" name="Default" comment="Transistions from EditingState to PlaceHolderState">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/states/Interactable.ts" afterPath="$PROJECT_DIR$/states/Interactable.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/states/EditingState.ts" afterPath="$PROJECT_DIR$/states/EditingState.ts" />
+    <list default="true" id="14506747-45b9-43e6-9792-590af115d6dd" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="content_editor.iws" />
@@ -48,7 +46,7 @@
       <file leaf-file-name="PlaceHolderState.ts" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/states/PlaceHolderState.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="19" column="0" selection-start="504" selection-end="504" vertical-scroll-proportion="0.3553616" vertical-offset="0" max-vertical-offset="855">
+            <state line="38" column="34" selection-start="972" selection-end="972" vertical-scroll-proportion="0.7107232" vertical-offset="0" max-vertical-offset="855">
               <folding />
             </state>
           </provider>
@@ -343,15 +341,19 @@
       <created>1388839614523</created>
       <updated>1388839614523</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Transistions from EditingState to PlaceHolderState">
+      <created>1388840326002</created>
+      <updated>1388840326002</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="76" y="22" width="1357" height="1330" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
-      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32956383" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32956383" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -665,7 +667,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/states/PlaceHolderState.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="19" column="0" selection-start="504" selection-end="504" vertical-scroll-proportion="0.3553616" vertical-offset="0" max-vertical-offset="855">
+        <state line="38" column="34" selection-start="972" selection-end="972" vertical-scroll-proportion="0.7107232" vertical-offset="0" max-vertical-offset="855">
           <folding />
         </state>
       </provider>
