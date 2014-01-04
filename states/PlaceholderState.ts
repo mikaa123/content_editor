@@ -1,19 +1,10 @@
 /**
- * Created by michaelsokol on 29/12/2013.
+ * Created by michaelsokol on 04/01/2014.
  */
 
-interface Interactable {
-	mousedown(editor: ContentEditor, e: JQueryEventObject): void;
-	keydown(editor: ContentEditor, e: JQueryEventObject): void;
-}
-
-class EditorState {
-	stateClass: string;
-
-	public initState(editor: ContentEditor) {
-		editor.$el.addClass(this.stateClass);
-	}
-}
+/// <reference path="EditorState.ts" />
+/// <reference path="Interactable.ts" />
+/// <reference path="EditingState.ts" />
 
 class PlaceHolderState extends EditorState implements Interactable {
 	public static _instance: PlaceHolderState = new PlaceHolderState();
@@ -56,29 +47,5 @@ class PlaceHolderState extends EditorState implements Interactable {
 		$editor.removeClass('is-placeholder');
 
 		editor.changeState(EditingState._instance);
-	}
-}
-
-class EditingState extends EditorState implements Interactable {
-	public static _instance: EditingState = new EditingState();
-
-	constructor() {
-		super();
-		this.stateClass = 'is-editing';
-	}
-
-
-	public initState(editor: ContentEditor) {
-		super.initState(editor);
-
-		alert('is-editing!')
-	}
-
-	mousedown(editor:ContentEditor, e:JQueryEventObject):void {
-		alert("hey!");
-	}
-
-	keydown(editor:ContentEditor, e:JQueryEventObject):void {
-		alert("ho!");
 	}
 }

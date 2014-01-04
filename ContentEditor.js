@@ -2,7 +2,8 @@
 * Created by michaelsokol on 28/12/2013.
 */
 /// <reference path="libs/jquery.d.ts" />
-/// <reference path="editor_states.ts" />
+/// <reference path="states/EditingState.ts" />
+/// <reference path="states/PlaceHolderState.ts" />
 var ContentEditor = (function () {
     function ContentEditor(el) {
         this.el = el;
@@ -36,4 +37,4 @@ var ContentEditor = (function () {
     };
     return ContentEditor;
 })();
-//# sourceMappingURL=content_editor.js.map
+//# sourceMappingURL=ContentEditor.js.map

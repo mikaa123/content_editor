@@ -3,7 +3,8 @@
  */
 
 /// <reference path="libs/jquery.d.ts" />
-/// <reference path="editor_states.ts" />
+/// <reference path="states/EditingState.ts" />
+/// <reference path="states/PlaceHolderState.ts" />
 
 class ContentEditor {
 	private state: EditorState;
