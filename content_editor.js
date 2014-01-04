@@ -5,7 +5,6 @@
 /// <reference path="editor_states.ts" />
 var ContentEditor = (function () {
     function ContentEditor(el) {
-        var _this = this;
         this.el = el;
         this.$el = $(el);
 
@@ -14,29 +13,26 @@ var ContentEditor = (function () {
 
         this.placeHolderText = this.$el.data('placeholder');
 
-        if (this.placeHolderText && this.placeHolderText) {
-            this.showPlaceholder();
+        if (this.placeHolderText && this.placeHolderText.length) {
+            this.changeState(PlaceHolderState._instance);
+        } else {
+            this.changeState(EditingState._instance);
         }
 
-        // Create bindings.
-        // What do i wanna bind?
-        // - mousedown
-        // - blur -> To show the placeholder
-        // - keydown
-        // - keyup
-        // Create states.
+        this.initListeners();
+    }
+    ContentEditor.prototype.changeState = function (state) {
+        this.state = state;
+        state.initState(this);
+    };
+
+    ContentEditor.prototype.initListeners = function () {
+        var _this = this;
         // Depending in the state, different things will be done.
         this.$el.on('mousedown blur keydown keyup', function (e) {
             var stateHandler = _this.state[e.type];
-            stateHandler && stateHandler(_this);
+            stateHandler && stateHandler(_this, e);
         });
-    }
-    ContentEditor.prototype.showPlaceholder = function () {
-        this.state = EditorStates.PLACEHOLDER;
-        this.$el.addClass('is-placeholder');
-        $('<p/>', {
-            text: this.placeHolderText
-        }).appendTo(this.$el);
     };
     return ContentEditor;
 })();

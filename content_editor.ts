@@ -8,7 +8,7 @@
 class ContentEditor {
 	private state: EditorState;
 
-	private $el: JQuery;
+	public $el: JQuery;
 
 	private placeHolderText: string;
 
@@ -19,31 +19,25 @@ class ContentEditor {
 
 		this.placeHolderText = this.$el.data('placeholder');
 
-		if (this.placeHolderText && this.placeHolderText) {
-			this.showPlaceholder();
+		if (this.placeHolderText && this.placeHolderText.length) {
+			this.changeState(PlaceHolderState._instance);
+		} else {
+			this.changeState(EditingState._instance);
 		}
 
-		// Create bindings.
-		// What do i wanna bind?
-		// - mousedown
-		// - blur -> To show the placeholder
-		// - keydown
-		// - keyup
+		this.initListeners();
+	}
 
-		// Create states.
+	public changeState(state: EditorState) {
+		this.state = state;
+		state.initState(this);
+	}
 
+	private initListeners() {
 		// Depending in the state, different things will be done.
 		this.$el.on('mousedown blur keydown keyup', e => {
 			var stateHandler = this.state[e.type];
-			stateHandler && stateHandler(this);
+			stateHandler && stateHandler(this, e);
 		});
-	}
-
-	private showPlaceholder () {
-		this.state = EditorStates.PLACEHOLDER;
-		this.$el.addClass('is-placeholder');
-		$('<p/>', {
-			text: this.placeHolderText
-		}).appendTo(this.$el);
 	}
 }
