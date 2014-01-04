@@ -1,20 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="14506747-45b9-43e6-9792-590af115d6dd" name="Default" comment="Refactoring on class names">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/states/EditingState.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/states/EditorState.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/states/Interactable.ts" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/states/PlaceHolderState.ts" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/editor_states.js" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/editor_states.js.map" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/editor_states.ts" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/content_editor.js" afterPath="$PROJECT_DIR$/ContentEditor.js" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/content_editor.js.map" afterPath="$PROJECT_DIR$/ContentEditor.js.map" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/content_editor.ts" afterPath="$PROJECT_DIR$/ContentEditor.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" afterPath="$PROJECT_DIR$/.idea/libraries/Generated_files.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/encodings.xml" afterPath="$PROJECT_DIR$/.idea/encodings.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+    <list default="true" id="14506747-45b9-43e6-9792-590af115d6dd" name="Default" comment="Transistions from EditingState to PlaceHolderState">
+      <change type="MOVED" beforePath="$PROJECT_DIR$/states/Interactable.ts" afterPath="$PROJECT_DIR$/states/Interactable.ts" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/states/EditingState.ts" afterPath="$PROJECT_DIR$/states/EditingState.ts" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="content_editor.iws" />
@@ -41,16 +30,7 @@
       <file leaf-file-name="EditingState.ts" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/states/EditingState.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="0" selection-start="132" selection-end="176" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ContentEditor.ts" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/ContentEditor.ts">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="36" selection-start="976" selection-end="976" vertical-scroll-proportion="0.77021825" vertical-offset="0" max-vertical-offset="779">
+            <state line="13" column="34" selection-start="361" selection-end="361" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
               <folding />
             </state>
           </provider>
@@ -65,10 +45,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlaceHolderState.ts" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="PlaceHolderState.ts" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/states/PlaceHolderState.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="36" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="855">
+            <state line="19" column="0" selection-start="504" selection-end="504" vertical-scroll-proportion="0.3553616" vertical-offset="0" max-vertical-offset="855">
               <folding />
             </state>
           </provider>
@@ -77,7 +57,7 @@
       <file leaf-file-name="Interactable.ts" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/states/Interactable.ts">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="6" column="10" selection-start="107" selection-end="107" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
+            <state line="9" column="9" selection-start="252" selection-end="252" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
               <folding />
             </state>
           </provider>
@@ -104,11 +84,11 @@
         <option value="$PROJECT_DIR$/states/PlaceholderState.ts" />
         <option value="$PROJECT_DIR$/states/editor_states.ts" />
         <option value="$PROJECT_DIR$/states/PlaceHolderState.ts" />
-        <option value="$PROJECT_DIR$/states/EditingState.ts" />
         <option value="$PROJECT_DIR$/ContentEditor.ts" />
-        <option value="$PROJECT_DIR$/states/Interactable.ts" />
         <option value="$PROJECT_DIR$/index.html" />
         <option value="$PROJECT_DIR$/states/EditorState.ts" />
+        <option value="$PROJECT_DIR$/states/Interactable.ts" />
+        <option value="$PROJECT_DIR$/states/EditingState.ts" />
       </list>
     </option>
   </component>
@@ -359,14 +339,18 @@
       <created>1388838456788</created>
       <updated>1388838456788</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Refactoring on class names">
+      <created>1388839614523</created>
+      <updated>1388839614523</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="76" y="22" width="1357" height="1330" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32956383" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -377,7 +361,7 @@
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24410646" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.17770597" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32956383" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32956383" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Documentation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" x="176" y="122" width="1157" height="1130" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -401,7 +385,8 @@
     </option>
     <MESSAGE value="Setting up architecture for states." />
     <MESSAGE value="Refactoring on class names" />
-    <option name="LAST_COMMIT_MESSAGE" value="Refactoring on class names" />
+    <MESSAGE value="Transistions from EditingState to PlaceHolderState" />
+    <option name="LAST_COMMIT_MESSAGE" value="Transistions from EditingState to PlaceHolderState" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -626,13 +611,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/states/PlaceHolderState.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="36" selection-start="168" selection-end="168" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="855">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ContentEditor.js.map">
       <provider editor-type-id="sourcemapFileViewerProvider">
         <state />
@@ -643,23 +621,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/states/EditingState.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="0" selection-start="132" selection-end="176" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="540">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/states/EditorState.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state line="4" column="44" selection-start="95" selection-end="95" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/states/Interactable.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="10" selection-start="107" selection-end="107" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="240">
           <folding />
         </state>
       </provider>
@@ -674,6 +638,34 @@
     <entry file="file://$PROJECT_DIR$/ContentEditor.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state line="40" column="36" selection-start="976" selection-end="976" vertical-scroll-proportion="0.77021825" vertical-offset="0" max-vertical-offset="779">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="10335">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/states/Interactable.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="9" column="9" selection-start="252" selection-end="252" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="255">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/states/EditingState.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="34" selection-start="361" selection-end="361" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/states/PlaceHolderState.ts">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="0" selection-start="504" selection-end="504" vertical-scroll-proportion="0.3553616" vertical-offset="0" max-vertical-offset="855">
           <folding />
         </state>
       </provider>

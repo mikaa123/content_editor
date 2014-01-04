@@ -27,4 +27,10 @@ class EditingState extends EditorState implements Interactable {
 	keydown(editor: ContentEditor, e: JQueryEventObject):void {
 		alert("ho!");
 	}
+
+	blur(editor: ContentEditor, e: JQueryEventObject):void {
+		if (!editor.$el.text().length) {
+			editor.changeState(PlaceHolderState._instance);
+		}
+	}
 }
