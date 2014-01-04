@@ -6,7 +6,7 @@
 /// <reference path="Interactable.ts" />
 /// <reference path="../ContentEditor.ts" />
 
-class EditingState extends EditorState implements Interactable {
+class EditingState extends EditorState implements Interactable{
 	public static _instance: EditingState = new EditingState();
 
 	constructor() {
@@ -16,16 +16,9 @@ class EditingState extends EditorState implements Interactable {
 
 	public initState(editor: ContentEditor) {
 		super.initState(editor);
-
-		alert('is-editing!')
-	}
-
-	mousedown(editor: ContentEditor, e: JQueryEventObject):void {
-		alert("hey!");
 	}
 
 	keydown(editor: ContentEditor, e: JQueryEventObject):void {
-		alert("ho!");
 	}
 
 	blur(editor: ContentEditor, e: JQueryEventObject):void {

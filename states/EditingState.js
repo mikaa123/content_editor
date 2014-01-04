@@ -18,16 +18,9 @@ var EditingState = (function (_super) {
     }
     EditingState.prototype.initState = function (editor) {
         _super.prototype.initState.call(this, editor);
-
-        alert('is-editing!');
-    };
-
-    EditingState.prototype.mousedown = function (editor, e) {
-        alert("hey!");
     };
 
     EditingState.prototype.keydown = function (editor, e) {
-        alert("ho!");
     };
 
     EditingState.prototype.blur = function (editor, e) {
