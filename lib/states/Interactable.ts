@@ -3,6 +3,7 @@
  */
 
 /// <reference path="../ContentEditor.ts" />
+/// <reference path="states.d.ts" />
 
 interface Interactable {
 	mousedown?(editor: ContentEditor, e: JQueryEventObject): void;

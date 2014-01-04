@@ -3,8 +3,7 @@
  */
 
 /// <reference path="EditorState.ts" />
-/// <reference path="Interactable.ts" />
-/// <reference path="EditingState.ts" />
+/// <reference path="states.d.ts" />
 
 class PlaceHolderState extends EditorState implements Interactable {
 	public static _instance: PlaceHolderState = new PlaceHolderState();

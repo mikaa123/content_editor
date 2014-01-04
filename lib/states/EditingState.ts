@@ -3,8 +3,7 @@
  */
 
 /// <reference path="EditorState.ts" />
-/// <reference path="Interactable.ts" />
-/// <reference path="../ContentEditor.ts" />
+/// <reference path="states.d.ts" />
 
 class EditingState extends EditorState implements Interactable{
 	public static _instance: EditingState = new EditingState();

@@ -8,8 +8,7 @@ var __extends = this.__extends || function (d, b) {
     d.prototype = new __();
 };
 /// <reference path="EditorState.ts" />
-/// <reference path="Interactable.ts" />
-/// <reference path="../ContentEditor.ts" />
+/// <reference path="states.d.ts" />
 var EditingState = (function (_super) {
     __extends(EditingState, _super);
     function EditingState() {
