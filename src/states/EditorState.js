@@ -5,7 +5,7 @@
 /// <reference path="states.d.ts" />
 var EditorState = (function () {
     function EditorState(stateName) {
-        this.stateName = 'placeholder';
+        this.stateName = stateName;
         this.stateClass = 'is-' + this.stateName;
     }
     EditorState.prototype.initState = function (editor) {

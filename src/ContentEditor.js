@@ -68,7 +68,7 @@ var ContentEditor = (function () {
     };
 
     ContentEditor.prototype.isKeyForbidden = function (stateName, e) {
-        return this.forbiddenKeyFnForState[stateName](e);
+        return this.forbiddenKeyFnForState[stateName] && this.forbiddenKeyFnForState[stateName](e);
     };
     return ContentEditor;
 })();
