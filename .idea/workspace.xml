@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="14506747-45b9-43e6-9792-590af115d6dd" name="Default" comment="No need for css">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/content_editor.css" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/states/Interactable.ts" afterPath="$PROJECT_DIR$/states/Interactable.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/states/EditingState.js.map" afterPath="$PROJECT_DIR$/states/EditingState.js.map" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/states/EditingState.js" afterPath="$PROJECT_DIR$/states/EditingState.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/states/EditingState.ts" afterPath="$PROJECT_DIR$/states/EditingState.ts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
+    <list default="true" id="14506747-45b9-43e6-9792-590af115d6dd" name="Default" comment="No need for css&#10;">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="content_editor.iws" />
@@ -365,7 +359,11 @@
       <created>1388840372967</created>
       <updated>1388840372967</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="No need for css">
+      <created>1388841654233</created>
+      <updated>1388841654233</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="ToolWindowManager">
