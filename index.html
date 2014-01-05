@@ -21,6 +21,10 @@
 		return e.ctrlKey;
 	});
 
+	contentEditor.addForbiddenKeyFn('editing', function (e) {
+		return e.which === 13;
+	});
+
 	var contentEditor = new ContentEditor($('#editor2')[0]);
 </script>
 </body>

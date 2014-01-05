@@ -19,6 +19,10 @@ var EditingState = (function (_super) {
     };
 
     EditingState.prototype.keydown = function (editor, e) {
+        if (editor.isKeyForbidden(this.stateName, e)) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
     };
 
     EditingState.prototype.blur = function (editor, e) {

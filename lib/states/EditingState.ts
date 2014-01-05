@@ -17,6 +17,10 @@ class EditingState extends EditorState implements Interactable{
 	}
 
 	keydown(editor: ContentEditor, e: JQueryEventObject):void {
+		if (editor.isKeyForbidden(this.stateName, e)) {
+			e.preventDefault();
+			e.stopPropagation();
+		}
 	}
 
 	blur(editor: ContentEditor, e: JQueryEventObject):void {
