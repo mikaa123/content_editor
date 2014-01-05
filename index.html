@@ -16,7 +16,11 @@
 <div class="content-editor" id="editor2" contenteditable="true" data-placeholder="Type your text here..."></div>
 
 <script type="application/javascript">
-	var contentEditor = new ContentEditor($('#editor1')[0], {max_length: 40});
+	window.contentEditor = new ContentEditor($('#editor1')[0], {
+		maxLength: 40,
+		minLength: 20,
+		allowEmpty: false
+	});
 	contentEditor.addForbiddenKeyFn('placeholder', function (e) {
 		return e.ctrlKey;
 	});
@@ -25,7 +29,12 @@
 		return e.which === 13;
 	});
 
-	var contentEditor = new ContentEditor($('#editor2')[0]);
+	window.contentEditor2 = new ContentEditor($('#editor2')[0]);
+
+	document.addEventListener('keydown', function(e) {
+		console.log('1:', contentEditor.isValid());
+		console.log('2:', contentEditor2.isValid());
+	});
 </script>
 </body>
 </html>

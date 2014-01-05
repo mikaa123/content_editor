@@ -43,7 +43,7 @@ var ContentEditor = (function () {
         state.initState(this);
     };
 
-    /***
+    /**
     * Each state is a Flyweight pattern (http://en.wikipedia.org/wiki/Flyweight_pattern),
     * as a result, they can't hold an extrinsic state. In this case, the ContentEditor acts
     * as a Context, and this is where instance-specific information concerning keyboard validation
@@ -59,6 +59,40 @@ var ContentEditor = (function () {
         this.forbiddenKeyFnForState[stateName] = fn;
     };
 
+    /**
+    * Checks if the editor is valid according to the option hash passed to the constructor.
+    */
+    ContentEditor.prototype.isValid = function () {
+        var textLength, validity = true, errors = [];
+
+        if (!this.options) {
+            return { isValid: true, errors: [] };
+        }
+
+        textLength = this.$el.text().length;
+        if (this.options.maxLength && textLength > this.options.maxLength) {
+            validity = false;
+            errors.push('maxLength');
+        }
+        if (this.options.minLength && textLength <= this.options.maxLength) {
+            validity = false;
+            errors.push('minLength');
+        }
+        if (!this.options.allowEmpty && this.state.stateName === 'placeholder' || !this.options.allowEmpty && this.state.stateName !== 'placeholder' && !textLength) {
+            validity = false;
+            errors.push('allowEmpty');
+        }
+
+        return {
+            isValid: validity,
+            errors: errors
+        };
+    };
+
+    ContentEditor.prototype.isKeyForbidden = function (stateName, e) {
+        return this.forbiddenKeyFnForState[stateName] && this.forbiddenKeyFnForState[stateName](e);
+    };
+
     ContentEditor.prototype.initListeners = function () {
         var _this = this;
         // Depending in the state, different things will be done.
@@ -66,10 +100,6 @@ var ContentEditor = (function () {
             var stateHandler = _this.state[e.type];
             stateHandler && stateHandler.call(_this.state, _this, e);
         });
-    };
-
-    ContentEditor.prototype.isKeyForbidden = function (stateName, e) {
-        return this.forbiddenKeyFnForState[stateName] && this.forbiddenKeyFnForState[stateName](e);
     };
     return ContentEditor;
 })();

@@ -26,7 +26,9 @@ class ContentEditor {
 	} = {};
 
 	constructor(public el: HTMLElement, public options?: {
-		max_length?: number;
+		maxLength?: number;
+		minLength?: number;
+		allowEmpty?: boolean;
 	}) {
 		this.$el = $(el);
 
@@ -52,7 +54,7 @@ class ContentEditor {
 		state.initState(this);
 	}
 
-	/***
+	/**
 	 * Each state is a Flyweight pattern (http://en.wikipedia.org/wiki/Flyweight_pattern),
 	 * as a result, they can't hold an extrinsic state. In this case, the ContentEditor acts
 	 * as a Context, and this is where instance-specific information concerning keyboard validation
@@ -68,15 +70,51 @@ class ContentEditor {
 		this.forbiddenKeyFnForState[stateName] = fn;
 	}
 
+	/**
+	 * Checks if the editor is valid according to the option hash passed to the constructor.
+	 */
+	public isValid(): {
+		isValid: boolean;
+		errors: string[];
+	} {
+		var textLength,
+			validity = true,
+			errors = [];
+
+		if (!this.options) {
+			return { isValid: true, errors: [] };
+		}
+
+		textLength = this.$el.text().length;
+		if (this.options.maxLength && textLength > this.options.maxLength) {
+			validity = false;
+			errors.push('maxLength');
+		}
+		if (this.options.minLength && textLength <= this.options.maxLength) {
+			validity = false;
+			errors.push('minLength');
+		}
+		if (!this.options.allowEmpty && this.state.stateName === 'placeholder' ||
+			!this.options.allowEmpty && this.state.stateName !== 'placeholder' && !textLength) {
+			validity = false;
+			errors.push('allowEmpty');
+		}
+
+		return {
+			isValid: validity,
+			errors: errors
+		};
+	}
+
+	public isKeyForbidden(stateName: string, e: JQueryEventObject): boolean {
+		return this.forbiddenKeyFnForState[stateName] && this.forbiddenKeyFnForState[stateName](e);
+	}
+
 	private initListeners() {
 		// Depending in the state, different things will be done.
 		this.$el.on('mousedown blur keydown keyup', e => {
 			var stateHandler = this.state[e.type];
 			stateHandler && stateHandler.call(this.state, this, e);
 		});
-	}
-
-	public isKeyForbidden(stateName: string, e: JQueryEventObject) {
-		return this.forbiddenKeyFnForState[stateName] && this.forbiddenKeyFnForState[stateName](e);
 	}
 }

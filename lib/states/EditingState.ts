@@ -18,7 +18,7 @@ class EditingState extends EditorState implements Interactable {
 
 	keydown(editor: ContentEditor, e: JQueryEventObject): void {
 		if (editor.isKeyForbidden(this.stateName, e) ||
-			editor.options.max_length && editor.options.max_length <= editor.$el.text().length && e.which !== 8) {
+			editor.options.maxLength && editor.options.maxLength <= editor.$el.text().length && e.which !== 8) {
 			e.preventDefault();
 			e.stopPropagation();
 		}
