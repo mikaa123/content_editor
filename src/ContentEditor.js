@@ -12,8 +12,9 @@
 * @class
 */
 var ContentEditor = (function () {
-    function ContentEditor(el) {
+    function ContentEditor(el, options) {
         this.el = el;
+        this.options = options;
         /**
         * A hash mapping state names to forbidden key checking functions.
         */

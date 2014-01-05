@@ -15,8 +15,8 @@
  */
 class ContentEditor {
 	private state: EditorState;
-	public $el: JQuery;
 	private placeHolderText: string;
+	public $el: JQuery;
 
 	/**
 	 * A hash mapping state names to forbidden key checking functions.
@@ -25,7 +25,9 @@ class ContentEditor {
 		[stateName: string]: (e: JQueryEventObject) => boolean
 	} = {};
 
-	constructor(public el: HTMLElement) {
+	constructor(public el: HTMLElement, public options?: {
+		max_length?: number;
+	}) {
 		this.$el = $(el);
 
 		if (!this.$el.length) throw 'No DOM element found.';

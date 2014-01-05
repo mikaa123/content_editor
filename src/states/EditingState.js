@@ -19,7 +19,7 @@ var EditingState = (function (_super) {
     };
 
     EditingState.prototype.keydown = function (editor, e) {
-        if (editor.isKeyForbidden(this.stateName, e)) {
+        if (editor.isKeyForbidden(this.stateName, e) || editor.options.max_length && editor.options.max_length <= editor.$el.text().length && e.which !== 8) {
             e.preventDefault();
             e.stopPropagation();
         }

@@ -16,7 +16,7 @@
 <div class="content-editor" id="editor2" contenteditable="true" data-placeholder="Type your text here..."></div>
 
 <script type="application/javascript">
-	var contentEditor = new ContentEditor($('#editor1')[0]);
+	var contentEditor = new ContentEditor($('#editor1')[0], {max_length: 40});
 	contentEditor.addForbiddenKeyFn('placeholder', function (e) {
 		return e.ctrlKey;
 	});
