@@ -42,8 +42,11 @@ var PlaceHolderState = (function (_super) {
     PlaceHolderState.prototype.keydown = function (editor, e) {
         var $editor = editor.$el;
 
-        if (editor.isKeyForbidden(this.stateName, e))
+        if (editor.isKeyForbidden(this.stateName, e)) {
+            e.preventDefault();
+            e.stopPropagation();
             return;
+        }
 
         $editor.find(':first-child').text('');
         $editor.removeClass('is-placeholder');
