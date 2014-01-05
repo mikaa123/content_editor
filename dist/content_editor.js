@@ -24,7 +24,7 @@ var EditingState = (function (_super) {
     };
 
     EditingState.prototype.keydown = function (editor, e) {
-        if (editor.isKeyForbidden(this.stateName, e)) {
+        if (editor.isKeyForbidden(this.stateName, e) || editor.options.maxLength && editor.options.maxLength <= editor.$el.text().length && e.which !== 8) {
             e.preventDefault();
             e.stopPropagation();
         }
@@ -86,8 +86,9 @@ var PlaceHolderState = (function (_super) {
     return PlaceHolderState;
 })(EditorState);
 var ContentEditor = (function () {
-    function ContentEditor(el) {
+    function ContentEditor(el, options) {
         this.el = el;
+        this.options = options;
         this.forbiddenKeyFnForState = {};
         this.$el = $(el);
 
@@ -111,16 +112,43 @@ var ContentEditor = (function () {
         this.forbiddenKeyFnForState[stateName] = fn;
     };
 
+    ContentEditor.prototype.isValid = function () {
+        var textLength, validity = true, errors = [];
+
+        if (!this.options) {
+            return { isValid: true, errors: [] };
+        }
+
+        textLength = this.$el.text().length;
+        if (this.options.maxLength && textLength > this.options.maxLength) {
+            validity = false;
+            errors.push('maxLength');
+        }
+        if (this.options.minLength && textLength <= this.options.minLength) {
+            validity = false;
+            errors.push('minLength');
+        }
+        if (!this.options.allowEmpty && this.state.stateName === 'placeholder' || !this.options.allowEmpty && this.state.stateName !== 'placeholder' && !textLength) {
+            validity = false;
+            errors.push('allowEmpty');
+        }
+
+        return {
+            isValid: validity,
+            errors: errors
+        };
+    };
+
+    ContentEditor.prototype.isKeyForbidden = function (stateName, e) {
+        return this.forbiddenKeyFnForState[stateName] && this.forbiddenKeyFnForState[stateName](e);
+    };
+
     ContentEditor.prototype.initListeners = function () {
         var _this = this;
         this.$el.on('mousedown blur keydown keyup', function (e) {
             var stateHandler = _this.state[e.type];
             stateHandler && stateHandler.call(_this.state, _this, e);
         });
-    };
-
-    ContentEditor.prototype.isKeyForbidden = function (stateName, e) {
-        return this.forbiddenKeyFnForState[stateName] && this.forbiddenKeyFnForState[stateName](e);
     };
     return ContentEditor;
 })();

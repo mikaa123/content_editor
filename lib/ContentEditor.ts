@@ -90,7 +90,7 @@ class ContentEditor {
 			validity = false;
 			errors.push('maxLength');
 		}
-		if (this.options.minLength && textLength <= this.options.maxLength) {
+		if (this.options.minLength && textLength <= this.options.minLength) {
 			validity = false;
 			errors.push('minLength');
 		}
