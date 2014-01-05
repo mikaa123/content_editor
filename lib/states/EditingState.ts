@@ -5,7 +5,7 @@
 /// <reference path="EditorState.ts" />
 /// <reference path="states.d.ts" />
 
-class EditingState extends EditorState implements Interactable{
+class EditingState extends EditorState implements Interactable {
 	public static _instance: EditingState = new EditingState();
 
 	constructor() {
@@ -16,14 +16,14 @@ class EditingState extends EditorState implements Interactable{
 		super.initState(editor);
 	}
 
-	keydown(editor: ContentEditor, e: JQueryEventObject):void {
+	keydown(editor: ContentEditor, e: JQueryEventObject): void {
 		if (editor.isKeyForbidden(this.stateName, e)) {
 			e.preventDefault();
 			e.stopPropagation();
 		}
 	}
 
-	blur(editor: ContentEditor, e: JQueryEventObject):void {
+	blur(editor: ContentEditor, e: JQueryEventObject): void {
 		if (!editor.$el.text().length) {
 			editor.changeState(PlaceHolderState._instance);
 		}

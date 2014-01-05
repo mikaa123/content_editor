@@ -42,7 +42,11 @@ class PlaceHolderState extends EditorState implements Interactable {
 	keydown(editor: ContentEditor, e: JQueryEventObject) {
 		var $editor = editor.$el;
 
-		if (editor.isKeyForbidden(this.stateName, e)) return;
+		if (editor.isKeyForbidden(this.stateName, e)){
+			e.preventDefault();
+			e.stopPropagation();
+			return;
+		}
 
 		$editor.find(':first-child').text('');
 		$editor.removeClass('is-placeholder');
