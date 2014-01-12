@@ -12,7 +12,8 @@
 * @class
 */
 var ContentEditor = (function () {
-    function ContentEditor(el, options) {
+    // TODO: Keyword - arguments?
+    function ContentEditor(el, statesMap, options) {
         this.el = el;
         this.options = options;
         /**
@@ -20,27 +21,35 @@ var ContentEditor = (function () {
         */
         this.forbiddenKeyFnForState = {};
         this.$el = $(el);
+        this.statesMap = statesMap || {
+            'placeholder': new PlaceHolderState(this),
+            'editing': new EditingState(this)
+        };
 
         if (!this.$el.length)
             throw 'No DOM element found.';
         this.placeHolderText = this.$el.data('placeholder');
         if (this.placeHolderText && this.placeHolderText.length) {
-            this.changeState(PlaceHolderState._instance);
+            this.changeState('placeholder');
         } else {
-            this.changeState(EditingState._instance);
+            this.changeState('editing');
         }
 
         this.initListeners();
     }
     /**
     * State transition goes through this method, although it's the states themselves who
-    * know when to transition state.
+    * know when to transition stateName.
     *
-    * @param state
+    * @param stateName
     */
-    ContentEditor.prototype.changeState = function (state) {
-        this.state = state;
-        state.initState(this);
+    ContentEditor.prototype.changeState = function (stateName) {
+        if (!stateName || !this.statesMap[stateName]) {
+            throw 'Undefined stateName';
+        }
+
+        this.state = this.statesMap[stateName];
+        this.state.initState(this);
     };
 
     /**
@@ -93,12 +102,31 @@ var ContentEditor = (function () {
         return this.forbiddenKeyFnForState[stateName] && this.forbiddenKeyFnForState[stateName](e);
     };
 
+    ContentEditor.prototype.addState = function (stateName, state) {
+        this.statesMap[stateName] = state;
+    };
+
+    ContentEditor.prototype.setStateProperty = function (stateName, props) {
+        var state = this.statesMap[stateName];
+        if (!state) {
+            state = new EditorState(stateName, this);
+        }
+
+        for (var prop in props) {
+            if (props.hasOwnProperty(prop)) {
+                state[prop] = props[prop];
+            }
+        }
+    };
+
+    ContentEditor.prototype.length = function () {
+        return this.$el.text().length;
+    };
+
     ContentEditor.prototype.initListeners = function () {
         var _this = this;
-        // Depending in the state, different things will be done.
         this.$el.on('mousedown blur keydown keyup', function (e) {
-            var stateHandler = _this.state[e.type];
-            stateHandler && stateHandler.call(_this.state, _this, e);
+            _this.state[e.type] && _this.state[e.type](e);
         });
     };
     return ContentEditor;

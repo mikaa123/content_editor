@@ -16,7 +16,10 @@
 <div class="content-editor" id="editor2" contenteditable="true" data-placeholder="Type your text here..."></div>
 
 <script type="application/javascript">
-	window.contentEditor = new ContentEditor($('#editor1')[0], {
+	// ContentEditor.extend calls the given cb with a new instance.
+	// The instance has an interface for adding states
+
+	window.contentEditor = new ContentEditor($('#editor1')[0], null, {
 		maxLength: 40,
 		minLength: 20,
 		allowEmpty: false
@@ -32,8 +35,6 @@
 	window.contentEditor2 = new ContentEditor($('#editor2')[0]);
 
 	document.addEventListener('keydown', function(e) {
-		console.log('1:', contentEditor.isValid());
-		console.log('2:', contentEditor2.isValid());
 	});
 </script>
 </body>

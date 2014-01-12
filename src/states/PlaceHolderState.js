@@ -11,8 +11,8 @@ var __extends = this.__extends || function (d, b) {
 /// <reference path="states.d.ts" />
 var PlaceHolderState = (function (_super) {
     __extends(PlaceHolderState, _super);
-    function PlaceHolderState() {
-        _super.call(this, 'placeholder');
+    function PlaceHolderState(editor) {
+        _super.call(this, 'placeholder', editor);
     }
     PlaceHolderState.prototype.initState = function (editor) {
         var $editor = editor.$el, placeHolderText = $editor.data('placeholder');
@@ -23,8 +23,8 @@ var PlaceHolderState = (function (_super) {
         $('<p>', { text: placeHolderText }).appendTo($editor);
     };
 
-    PlaceHolderState.prototype.mousedown = function (editor, e) {
-        var sel, range;
+    PlaceHolderState.prototype.mousedownHandler = function (e) {
+        var editor = this.editor, sel, range;
 
         e.preventDefault();
         e.stopPropagation();
@@ -39,21 +39,14 @@ var PlaceHolderState = (function (_super) {
         }
     };
 
-    PlaceHolderState.prototype.keydown = function (editor, e) {
-        var $editor = editor.$el;
-
-        if (editor.isKeyForbidden(this.stateName, e)) {
-            e.preventDefault();
-            e.stopPropagation();
-            return;
-        }
+    PlaceHolderState.prototype.keydownHandler = function (e) {
+        var $editor = this.editor.$el;
 
         $editor.find(':first-child').text('');
         $editor.removeClass('is-placeholder');
 
-        editor.changeState(EditingState._instance);
+        this.editor.changeState('editing');
     };
-    PlaceHolderState._instance = new PlaceHolderState();
     return PlaceHolderState;
 })(EditorState);
 //# sourceMappingURL=PlaceHolderState.js.map

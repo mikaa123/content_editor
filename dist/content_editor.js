@@ -32,7 +32,7 @@ var EditingState = (function (_super) {
 
     EditingState.prototype.blur = function (editor, e) {
         if (!editor.$el.text().length) {
-            editor.changeState(PlaceHolderState._instance);
+            editor.changeState({stateName: PlaceHolderState._instance});
         }
     };
     EditingState._instance = new EditingState();
@@ -80,7 +80,7 @@ var PlaceHolderState = (function (_super) {
         $editor.find(':first-child').text('');
         $editor.removeClass('is-placeholder');
 
-        editor.changeState(EditingState._instance);
+        editor.changeState({stateName: EditingState._instance});
     };
     PlaceHolderState._instance = new PlaceHolderState();
     return PlaceHolderState;
@@ -96,9 +96,9 @@ var ContentEditor = (function () {
             throw 'No DOM element found.';
         this.placeHolderText = this.$el.data('placeholder');
         if (this.placeHolderText && this.placeHolderText.length) {
-            this.changeState(PlaceHolderState._instance);
+            this.changeState({stateName: PlaceHolderState._instance});
         } else {
-            this.changeState(EditingState._instance);
+            this.changeState({stateName: EditingState._instance});
         }
 
         this.initListeners();

@@ -5,11 +5,10 @@
 /// <reference path="EditorState.ts" />
 /// <reference path="states.d.ts" />
 
-class PlaceHolderState extends EditorState implements Interactable {
-	public static _instance: PlaceHolderState = new PlaceHolderState();
+class PlaceHolderState extends EditorState {
 
-	constructor() {
-		super('placeholder');
+	constructor(editor: ContentEditor) {
+		super('placeholder', editor);
 	}
 
 	public initState(editor: ContentEditor) {
@@ -22,8 +21,9 @@ class PlaceHolderState extends EditorState implements Interactable {
 		$('<p>', { text: placeHolderText }).appendTo($editor);
 	}
 
-	mousedown(editor: ContentEditor, e: JQueryEventObject) {
-		var sel,
+	mousedownHandler(e: JQueryEventObject) {
+		var editor = this.editor,
+			sel,
 			range;
 
 		e.preventDefault();
@@ -39,18 +39,12 @@ class PlaceHolderState extends EditorState implements Interactable {
 		}
 	}
 
-	keydown(editor: ContentEditor, e: JQueryEventObject) {
-		var $editor = editor.$el;
-
-		if (editor.isKeyForbidden(this.stateName, e)){
-			e.preventDefault();
-			e.stopPropagation();
-			return;
-		}
+	keydownHandler(e: JQueryEventObject) {
+		var $editor = this.editor.$el;
 
 		$editor.find(':first-child').text('');
 		$editor.removeClass('is-placeholder');
 
-		editor.changeState(EditingState._instance);
+		this.editor.changeState('editing');
 	}
 }

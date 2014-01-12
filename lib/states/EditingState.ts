@@ -5,28 +5,19 @@
 /// <reference path="EditorState.ts" />
 /// <reference path="states.d.ts" />
 
-class EditingState extends EditorState implements Interactable {
-	public static _instance: EditingState = new EditingState();
+class EditingState extends EditorState {
 
-	constructor() {
-		super('editing');
+	constructor(editor: ContentEditor) {
+		super('editing', editor);
 	}
 
 	public initState(editor: ContentEditor) {
 		super.initState(editor);
 	}
 
-	keydown(editor: ContentEditor, e: JQueryEventObject): void {
-		if (editor.isKeyForbidden(this.stateName, e) ||
-			editor.options.maxLength && editor.options.maxLength <= editor.$el.text().length && e.which !== 8) {
-			e.preventDefault();
-			e.stopPropagation();
-		}
-	}
-
-	blur(editor: ContentEditor, e: JQueryEventObject): void {
-		if (!editor.$el.text().length) {
-			editor.changeState(PlaceHolderState._instance);
+	blur(e: JQueryEventObject): void {
+		if (!this.editor.$el.text().length) {
+			this.editor.changeState('placeholder');
 		}
 	}
 }

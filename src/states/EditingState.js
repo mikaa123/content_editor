@@ -11,26 +11,18 @@ var __extends = this.__extends || function (d, b) {
 /// <reference path="states.d.ts" />
 var EditingState = (function (_super) {
     __extends(EditingState, _super);
-    function EditingState() {
-        _super.call(this, 'editing');
+    function EditingState(editor) {
+        _super.call(this, 'editing', editor);
     }
     EditingState.prototype.initState = function (editor) {
         _super.prototype.initState.call(this, editor);
     };
 
-    EditingState.prototype.keydown = function (editor, e) {
-        if (editor.isKeyForbidden(this.stateName, e) || editor.options.maxLength && editor.options.maxLength <= editor.$el.text().length && e.which !== 8) {
-            e.preventDefault();
-            e.stopPropagation();
+    EditingState.prototype.blur = function (e) {
+        if (!this.editor.$el.text().length) {
+            this.editor.changeState('placeholder');
         }
     };
-
-    EditingState.prototype.blur = function (editor, e) {
-        if (!editor.$el.text().length) {
-            editor.changeState(PlaceHolderState._instance);
-        }
-    };
-    EditingState._instance = new EditingState();
     return EditingState;
 })(EditorState);
 //# sourceMappingURL=EditingState.js.map

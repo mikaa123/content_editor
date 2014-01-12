@@ -25,19 +25,31 @@ class ContentEditor {
 		[stateName: string]: (e: JQueryEventObject) => boolean
 	} = {};
 
-	constructor(public el: HTMLElement, public options?: {
+	/**
+	 * Holds all the state instances for the editor.
+	 */
+	private statesMap: {
+		[stateName: string]: EditorState
+	}
+
+	// TODO: Keyword - arguments?
+	constructor(public el: HTMLElement, statesMap, public options?: {
 		maxLength?: number;
 		minLength?: number;
 		allowEmpty?: boolean;
 	}) {
 		this.$el = $(el);
+		this.statesMap = statesMap || {
+			'placeholder': new PlaceHolderState(this),
+			'editing': new EditingState(this)
+		};
 
 		if (!this.$el.length) throw 'No DOM element found.';
 		this.placeHolderText = this.$el.data('placeholder');
 		if (this.placeHolderText && this.placeHolderText.length) {
-			this.changeState(PlaceHolderState._instance);
+			this.changeState('placeholder');
 		} else {
-			this.changeState(EditingState._instance);
+			this.changeState('editing');
 		}
 
 		this.initListeners();
@@ -45,13 +57,17 @@ class ContentEditor {
 
 	/**
 	 * State transition goes through this method, although it's the states themselves who
-	 * know when to transition state.
+	 * know when to transition stateName.
 	 *
-	 * @param state
+	 * @param stateName
 	 */
-	public changeState(state: EditorState) {
-		this.state = state;
-		state.initState(this);
+	public changeState(stateName: string) {
+		if (!stateName || !this.statesMap[stateName]) {
+			throw 'Undefined stateName';
+		}
+
+		this.state = this.statesMap[stateName];
+		this.state.initState(this);
 	}
 
 	/**
@@ -110,11 +126,30 @@ class ContentEditor {
 		return this.forbiddenKeyFnForState[stateName] && this.forbiddenKeyFnForState[stateName](e);
 	}
 
+	public addState(stateName: string, state: EditorState) {
+		this.statesMap[stateName] = state;
+	}
+
+	public setStateProperty(stateName: string, props) {
+		var state = this.statesMap[stateName];
+		if (!state) {
+			state = new EditorState(stateName, this);
+		}
+
+		for (var prop in props) {
+			if (props.hasOwnProperty(prop)) {
+				state[prop] = props[prop];
+			}
+		}
+	}
+
+	public length(): number {
+		return this.$el.text().length;
+	}
+
 	private initListeners() {
-		// Depending in the state, different things will be done.
 		this.$el.on('mousedown blur keydown keyup', e => {
-			var stateHandler = this.state[e.type];
-			stateHandler && stateHandler.call(this.state, this, e);
+			this.state[e.type] && this.state[e.type](e);
 		});
 	}
 }
