@@ -12,16 +12,15 @@
 * @class
 */
 var ContentEditor = (function () {
-    // TODO: Keyword - arguments?
-    function ContentEditor(el, statesMap, options) {
+    function ContentEditor(el, params) {
         this.el = el;
-        this.options = options;
         /**
         * A hash mapping state names to forbidden key checking functions.
         */
         this.forbiddenKeyFnForState = {};
         this.$el = $(el);
-        this.statesMap = statesMap || {
+        this.options = params.options;
+        this.states = params.states || {
             'placeholder': new PlaceHolderState(this),
             'editing': new EditingState(this)
         };
@@ -44,12 +43,12 @@ var ContentEditor = (function () {
     * @param stateName
     */
     ContentEditor.prototype.changeState = function (stateName) {
-        if (!stateName || !this.statesMap[stateName]) {
+        if (!stateName || !this.states[stateName]) {
             throw 'Undefined stateName';
         }
 
-        this.state = this.statesMap[stateName];
-        this.state.initState(this);
+        this.state = this.states[stateName];
+        this.state.initState();
     };
 
     /**
@@ -103,11 +102,11 @@ var ContentEditor = (function () {
     };
 
     ContentEditor.prototype.addState = function (stateName, state) {
-        this.statesMap[stateName] = state;
+        this.states[stateName] = state;
     };
 
     ContentEditor.prototype.setStateProperty = function (stateName, props) {
-        var state = this.statesMap[stateName];
+        var state = this.states[stateName];
         if (!state) {
             state = new EditorState(stateName, this);
         }

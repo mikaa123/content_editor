@@ -19,11 +19,14 @@
 	// ContentEditor.extend calls the given cb with a new instance.
 	// The instance has an interface for adding states
 
-	window.contentEditor = new ContentEditor($('#editor1')[0], null, {
-		maxLength: 40,
-		minLength: 20,
-		allowEmpty: false
+	window.contentEditor = new ContentEditor($('#editor1')[0], {
+		options: {
+			maxLength: 40,
+			minLength: 20,
+			allowEmpty: false
+		}
 	});
+
 	contentEditor.addForbiddenKeyFn('placeholder', function (e) {
 		return e.ctrlKey;
 	});
@@ -32,7 +35,16 @@
 		return e.which === 13;
 	});
 
-	window.contentEditor2 = new ContentEditor($('#editor2')[0]);
+/*
+	window.contentEditor3 = new ContentEditor({
+		el: $('#editor2')[0],
+		options: {
+			maxLength: 40,
+			minLength: 20,
+			allowEmpty: false
+		}
+	})
+*/
 
 	document.addEventListener('keydown', function(e) {
 	});

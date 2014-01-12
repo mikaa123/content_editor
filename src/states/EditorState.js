@@ -9,8 +9,8 @@ var EditorState = (function () {
         this.editor = editor;
         this.stateClass = 'is-' + this.stateName;
     }
-    EditorState.prototype.initState = function (editor) {
-        editor.$el.addClass(this.stateClass);
+    EditorState.prototype.initState = function () {
+        this.editor.$el.addClass(this.stateClass);
     };
 
     EditorState.prototype.keydown = function (e) {

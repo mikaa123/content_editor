@@ -17,6 +17,11 @@ class ContentEditor {
 	private state: EditorState;
 	private placeHolderText: string;
 	public $el: JQuery;
+	public options: {
+		maxLength?: number;
+		minLength?: number;
+		allowEmpty?: boolean;
+	}
 
 	/**
 	 * A hash mapping state names to forbidden key checking functions.
@@ -28,18 +33,14 @@ class ContentEditor {
 	/**
 	 * Holds all the state instances for the editor.
 	 */
-	private statesMap: {
+	private states: {
 		[stateName: string]: EditorState
 	}
 
-	// TODO: Keyword - arguments?
-	constructor(public el: HTMLElement, statesMap, public options?: {
-		maxLength?: number;
-		minLength?: number;
-		allowEmpty?: boolean;
-	}) {
+	constructor(public el: HTMLElement, params) {
 		this.$el = $(el);
-		this.statesMap = statesMap || {
+		this.options = params.options;
+		this.states = params.states || {
 			'placeholder': new PlaceHolderState(this),
 			'editing': new EditingState(this)
 		};
@@ -62,12 +63,12 @@ class ContentEditor {
 	 * @param stateName
 	 */
 	public changeState(stateName: string) {
-		if (!stateName || !this.statesMap[stateName]) {
+		if (!stateName || !this.states[stateName]) {
 			throw 'Undefined stateName';
 		}
 
-		this.state = this.statesMap[stateName];
-		this.state.initState(this);
+		this.state = this.states[stateName];
+		this.state.initState();
 	}
 
 	/**
@@ -127,11 +128,11 @@ class ContentEditor {
 	}
 
 	public addState(stateName: string, state: EditorState) {
-		this.statesMap[stateName] = state;
+		this.states[stateName] = state;
 	}
 
 	public setStateProperty(stateName: string, props) {
-		var state = this.statesMap[stateName];
+		var state = this.states[stateName];
 		if (!state) {
 			state = new EditorState(stateName, this);
 		}

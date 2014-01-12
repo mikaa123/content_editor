@@ -12,8 +12,8 @@ class EditorState implements Interactable {
 		this.stateClass = 'is-' + this.stateName;
 	}
 
-	public initState(editor: ContentEditor) {
-		editor.$el.addClass(this.stateClass);
+	public initState() {
+		this.editor.$el.addClass(this.stateClass);
 	}
 
 	public keydown(e: JQueryEventObject) {
