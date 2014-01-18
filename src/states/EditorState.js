@@ -38,9 +38,10 @@ var EditorState = (function () {
     };
 
     EditorState.prototype.isTypingAllowed = function (e) {
-        var editor = this.editor, options = editor.options, isKeyForbidden = this.isKeyForbidden(e) || false;
+        var editor = this.editor, options = editor.options, isKeyForbidden = this.isKeyForbidden && this.isKeyForbidden(e) || false;
 
-        if (!options.maxLength) {
+        // TODO: This information shouldn't be known by the baseclass.
+        if (!options.maxLength || this.stateName === 'placeholder') {
             return !isKeyForbidden;
         }
 

@@ -40,12 +40,13 @@ class EditorState implements Interactable {
 		handler && handler.call(this, e);
 	}
 
-	private isTypingAllowed(e: JQueryEventObject): boolean {
+	public isTypingAllowed(e: JQueryEventObject): boolean {
 		var editor = this.editor,
 			options = editor.options,
-			isKeyForbidden = this.isKeyForbidden(e) || false;
+			isKeyForbidden = this.isKeyForbidden && this.isKeyForbidden(e) || false;
 
-		if (!options.maxLength) {
+		// TODO: This information shouldn't be known by the baseclass.
+		if (!options.maxLength || this.stateName === 'placeholder') {
 			return !isKeyForbidden;
 		}
 
