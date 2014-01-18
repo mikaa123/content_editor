@@ -65,11 +65,6 @@ class ContentEditor {
 	}
 
 	/**
-	 * Each state is a Flyweight pattern (http://en.wikipedia.org/wiki/Flyweight_pattern),
-	 * as a result, they can't hold an extrinsic state. In this case, the ContentEditor acts
-	 * as a Context, and this is where instance-specific information concerning keyboard validation
-	 * is stored.
-	 *
 	 * Each function returns a boolean indicating whether the key represented in the JQueryEventObject
 	 * is forbidden.
 	 *
@@ -82,6 +77,7 @@ class ContentEditor {
 
 	/**
 	 * Checks if the editor is valid according to the option hash passed to the constructor.
+	 * TODO: Use error objects instead of a conditional.
 	 */
 	public isValid(): {
 		isValid: boolean;
