@@ -14,10 +14,10 @@ var PlaceHolderState = (function (_super) {
     function PlaceHolderState(editor) {
         _super.call(this, 'placeholder', editor);
     }
-    PlaceHolderState.prototype.initState = function (editor) {
-        var $editor = editor.$el, placeHolderText = $editor.data('placeholder');
+    PlaceHolderState.prototype.initState = function () {
+        var $editor = this.editor.$el, placeHolderText = $editor.data('placeholder');
 
-        _super.prototype.initState.call(this, editor);
+        _super.prototype.initState.call(this);
 
         $editor.empty();
         $('<p>', { text: placeHolderText }).appendTo($editor);

@@ -38,17 +38,13 @@ var EditorState = (function () {
     };
 
     EditorState.prototype.isTypingAllowed = function (e) {
-        var editor = this.editor, options = editor.options, isKeyForbidden = this.isKeyForbidden(e);
+        var editor = this.editor, options = editor.options, isKeyForbidden = this.isKeyForbidden(e) || false;
 
         if (!options.maxLength) {
             return !isKeyForbidden;
         }
 
         return !isKeyForbidden && editor.length() <= options.maxLength || e.which === 8;
-    };
-
-    EditorState.prototype.isKeyForbidden = function (e) {
-        return false;
     };
     return EditorState;
 })();

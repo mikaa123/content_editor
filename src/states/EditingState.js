@@ -14,8 +14,8 @@ var EditingState = (function (_super) {
     function EditingState(editor) {
         _super.call(this, 'editing', editor);
     }
-    EditingState.prototype.initState = function (editor) {
-        _super.prototype.initState.call(this, editor);
+    EditingState.prototype.initState = function () {
+        _super.prototype.initState.call(this);
     };
 
     EditingState.prototype.blur = function (e) {

@@ -24,13 +24,6 @@ class ContentEditor {
 	}
 
 	/**
-	 * A hash mapping state names to forbidden key checking functions.
-	 */
-	private forbiddenKeyFnForState: {
-		[stateName: string]: (e: JQueryEventObject) => boolean
-	} = {};
-
-	/**
 	 * Holds all the state instances for the editor.
 	 */
 	private states: {
@@ -84,7 +77,7 @@ class ContentEditor {
 	 * @param fn
 	 */
 	public addForbiddenKeyFn(stateName: string, fn: (e: JQueryEventObject) => boolean) {
-		this.forbiddenKeyFnForState[stateName] = fn;
+		this.states[stateName].isKeyForbidden = fn;
 	}
 
 	/**
@@ -121,10 +114,6 @@ class ContentEditor {
 			isValid: validity,
 			errors: errors
 		};
-	}
-
-	public isKeyForbidden(stateName: string, e: JQueryEventObject): boolean {
-		return this.forbiddenKeyFnForState[stateName] && this.forbiddenKeyFnForState[stateName](e);
 	}
 
 	public addState(stateName: string, state: EditorState) {

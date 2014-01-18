@@ -13,41 +13,33 @@
 <h1>ContentEditor playground !</h1>
 
 <div class="content-editor" id="editor1" contenteditable="true" data-placeholder="Type your text here..."></div>
-<div class="content-editor" id="editor2" contenteditable="true" data-placeholder="Type your text here..."></div>
 
 <script type="application/javascript">
 	// ContentEditor.extend calls the given cb with a new instance.
 	// The instance has an interface for adding states
 
-	window.contentEditor = new ContentEditor($('#editor1')[0], {
-		options: {
-			maxLength: 40,
-			minLength: 20,
-			allowEmpty: false
-		}
-	});
+	var LineEditor = function (el, minLength, maxLength) {
 
-	contentEditor.addForbiddenKeyFn('placeholder', function (e) {
-		return e.ctrlKey;
-	});
+		ContentEditor.call(this, el, {
+			options: {
+				maxLength: minLength,
+				minLength: maxLength,
+				allowEmpty: false
+			}
+		});
 
-	contentEditor.addForbiddenKeyFn('editing', function (e) {
-		return e.which === 13;
-	});
+		this.addForbiddenKeyFn('placeholder', function (e) {
+			return e.ctrlKey || e.which === 13;
+		});
 
-/*
-	window.contentEditor3 = new ContentEditor({
-		el: $('#editor2')[0],
-		options: {
-			maxLength: 40,
-			minLength: 20,
-			allowEmpty: false
-		}
-	})
-*/
+		this.addForbiddenKeyFn('editing', function (e) {
+			return e.which === 13;
+		});
+	};
+	LineEditor.prototype = Object.create(ContentEditor.prototype);
 
-	document.addEventListener('keydown', function(e) {
-	});
+	new LineEditor($('#editor1')[0]);
+
 </script>
 </body>
 </html>

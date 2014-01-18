@@ -11,11 +11,11 @@ class PlaceHolderState extends EditorState {
 		super('placeholder', editor);
 	}
 
-	public initState(editor: ContentEditor) {
-		var $editor = editor.$el,
+	public initState() {
+		var $editor = this.editor.$el,
 			placeHolderText = $editor.data('placeholder');
 
-		super.initState(editor);
+		super.initState();
 
 		$editor.empty();
 		$('<p>', { text: placeHolderText }).appendTo($editor);

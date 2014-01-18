@@ -7,6 +7,7 @@
 
 class EditorState implements Interactable {
 	stateClass: string;
+	isKeyForbidden: (e: JQueryEventObject) => boolean;
 
 	constructor(public stateName: string, public editor: ContentEditor) {
 		this.stateClass = 'is-' + this.stateName;
@@ -42,7 +43,7 @@ class EditorState implements Interactable {
 	private isTypingAllowed(e: JQueryEventObject): boolean {
 		var editor = this.editor,
 			options = editor.options,
-			isKeyForbidden = this.isKeyForbidden(e);
+			isKeyForbidden = this.isKeyForbidden(e) || false;
 
 		if (!options.maxLength) {
 			return !isKeyForbidden;
@@ -50,9 +51,5 @@ class EditorState implements Interactable {
 
 		return !isKeyForbidden && editor.length() <= options.maxLength ||
 			e.which === 8;
-	}
-
-	private isKeyForbidden(e: JQueryEventObject): boolean {
-		return false;
 	}
 }

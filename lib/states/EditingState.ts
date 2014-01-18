@@ -11,11 +11,11 @@ class EditingState extends EditorState {
 		super('editing', editor);
 	}
 
-	public initState(editor: ContentEditor) {
-		super.initState(editor);
+	public initState() {
+		super.initState();
 	}
 
-	blur(e: JQueryEventObject): void {
+	public blur(e: JQueryEventObject) {
 		if (!this.editor.$el.text().length) {
 			this.editor.changeState('placeholder');
 		}

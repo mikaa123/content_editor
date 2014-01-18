@@ -14,10 +14,6 @@
 var ContentEditor = (function () {
     function ContentEditor(el, params) {
         this.el = el;
-        /**
-        * A hash mapping state names to forbidden key checking functions.
-        */
-        this.forbiddenKeyFnForState = {};
         this.$el = $(el);
         this.options = params.options;
         this.states = params.states || {
@@ -64,7 +60,7 @@ var ContentEditor = (function () {
     * @param fn
     */
     ContentEditor.prototype.addForbiddenKeyFn = function (stateName, fn) {
-        this.forbiddenKeyFnForState[stateName] = fn;
+        this.states[stateName].isKeyForbidden = fn;
     };
 
     /**
@@ -95,10 +91,6 @@ var ContentEditor = (function () {
             isValid: validity,
             errors: errors
         };
-    };
-
-    ContentEditor.prototype.isKeyForbidden = function (stateName, e) {
-        return this.forbiddenKeyFnForState[stateName] && this.forbiddenKeyFnForState[stateName](e);
     };
 
     ContentEditor.prototype.addState = function (stateName, state) {
